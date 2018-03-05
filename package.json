@@ -1,7 +1,7 @@
 {
-  "name": "generator-express-typescript",
-  "version": "1.0.0",
-  "description": "",
+  "name": "express-typescript-template",
+  "version": "0.1.0",
+  "description": "A generator for building an express server using typescript",
   "main": "index.ts",
   "scripts": {
     "start": "ts-node index.ts",
