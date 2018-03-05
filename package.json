@@ -1,0 +1,25 @@
+{
+  "name": "generator-express-typescript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "start": "ts-node index.ts",
+    "watch": "nodemon --config nodemonconfig.json",
+    "debug": "npm run watch --inspect",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/express": "^4.11.1",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.1",
+    "ts-node": "^5.0.1",
+    "tslint": "^5.9.1",
+    "typescript": "^2.7.2"
+  }
+}
