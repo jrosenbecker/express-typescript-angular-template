@@ -1,4 +1,16 @@
-import server from './server';
+import 'reflect-metadata';
+import { InversifyExpressServer } from 'inversify-express-utils';
+import { myContainer } from './inversify/inversify.config';
+import * as bodyParser from 'body-parser';
+import { TYPES } from './inversify/inversify.types';
+import './controllers';
+
+const inversifyServer = new InversifyExpressServer(myContainer).setConfig((app) => {
+    app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded({extended: false}));
+});
+
+const server = inversifyServer.build();
 
 server.set('port', (process.env.PORT || 3000));
 
