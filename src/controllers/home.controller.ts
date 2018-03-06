@@ -10,7 +10,9 @@ export class HomeController implements interfaces.Controller {
     constructor(@inject(TYPES.IExampleService) private exampleService: IExampleService) { }
 
     @httpGet('/')
-    private index(req: Request, res: Response): String {
-        return this.exampleService.helloWorld();
+    private index(req: Request, res: Response): Response {
+        return res.json({
+            message: this.exampleService.helloWorld()
+        });
     }
 }
