@@ -1,15 +1,13 @@
-# Express Typescript Template
+# Express-Typescript-Angular Template
 
-This is a simple, lightweight template for setting up an Express server using typescript.
+This is a template which uses an Express server and typescript to serve an Angular app along with a backend API. The server side
+is using InversifyJS for dependency injection as well as controller definitions.
 
 ## Installation/Setup
 1. Clone this repository.
 ```
-git clone https://github.com/jrosenbecker/express-typescript-template
+git clone https://github.com/jrosenbecker/express-typescript-angular-template.git
 ```
 2. Run `npm install`.
-3. Run `npm start` to start the express server or `npm run watch` to watch for any changes you make. The watch script will watch for changes within the `src` directory by default, though this can be modified in the `nodemonconfig.json` file.
-
-## Comments
-* This uses `ts-node` to run the typescript files without needing to worry about compiling every time you make changes
-* The launch.json file defines a debugging configuration for Visual Studio Code which will allow you to debug while running `ts-node`
+3. Run `npm start` to start the express server or `npm run watch` to watch for any changes you make.
+4. 
