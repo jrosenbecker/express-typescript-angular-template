@@ -1,29 +1,16 @@
 import * as express from 'express';
-import * as bodyParser from 'body-parser';
+import { interfaces, controller, httpGet } from 'inversify-express-utils';
+import { injectable, inject } from 'inversify';
+import { TYPES } from './inversify/inversify.types';
+import { IExampleService } from './service-contracts/iexample-service';
+import { myContainer } from './inversify/inversify.config';
 
-class AppServer {
-    public express: express.Application;
+@controller('/')
+export class AppServer implements interfaces.Controller {
+    constructor(@inject(TYPES.IExampleService) private exampleService: IExampleService) { }
 
-    constructor() {
-        this.express = express();
-        this.middleware();
-        this.routes();
-    }
-
-    private middleware() {
-        this.express.use(bodyParser.json());
-        this.express.use(bodyParser.urlencoded({extended: false}));
-    }
-
-    private routes(): void {
-        const router = express.Router();
-        router.get('/', (req, res) => {
-            res.json({
-                message: 'Hello World!'
-            });
-        });
-        this.express.use('/', router);
+    @httpGet('/')
+    private index(req: express.Request, res: express.Response) {
+        return this.exampleService.helloWorld();
     }
 }
-
-export default new AppServer().express;
