@@ -2,9 +2,8 @@ import 'reflect-metadata';
 import { InversifyExpressServer } from 'inversify-express-utils';
 import { myContainer } from './inversify/inversify.config';
 import * as bodyParser from 'body-parser';
-import { AppServer } from './server';
 import { TYPES } from './inversify/inversify.types';
-import './server';
+import './controllers';
 
 const inversifyServer = new InversifyExpressServer(myContainer).setConfig((app) => {
     app.use(bodyParser.json());
