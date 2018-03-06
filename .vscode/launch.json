@@ -8,6 +8,7 @@
             "name": "Debug",
             "type": "node",
             "request": "launch",
+            "preLaunchTask": "npm: build:client",
             "args": ["src/index.ts"],
             "runtimeArgs": ["--nolazy", "-r", "ts-node/register"],
             "sourceMaps": true,

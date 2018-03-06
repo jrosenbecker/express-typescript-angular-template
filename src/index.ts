@@ -1,22 +1,27 @@
 import 'reflect-metadata';
 import { InversifyExpressServer } from 'inversify-express-utils';
-import { myContainer } from './inversify/inversify.config';
-import * as bodyParser from 'body-parser';
+import { container } from './inversify/inversify.config';
 import { TYPES } from './inversify/inversify.types';
-import './controllers';
+import * as bodyParser from 'body-parser';
 import * as express from 'express';
 import * as path from 'path';
 
-const routes = express.Router();
-routes.use(express.static(path.join(__dirname, '..', 'dist', 'web-app')));
+// Import and register the controllers (done automattically through the controller annotations)
+import './controllers';
 
-const inversifyServer = new InversifyExpressServer(myContainer, routes).setConfig((app) => {
+// Manually set a static route to serve the angular application
+const staticRoutes = express.Router();
+staticRoutes.use(express.static(path.join(__dirname, '..', 'dist', 'web-app')));
+
+// Use inversify to manage dependency injection and register the static routes
+const inversifyServer = new InversifyExpressServer(container, staticRoutes).setConfig((app) => {
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({extended: false}));
 });
 
 const server = inversifyServer.build();
 
+// Set port based on environment variables
 server.set('port', (process.env.PORT || 3000));
 
 server.listen(server.get('port'), (err) => {

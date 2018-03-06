@@ -4,7 +4,7 @@
   "description": "A generator for building an express server using typescript",
   "main": "index.ts",
   "scripts": {
-    "start": "npm run build && cd dist && node index.js",
+    "start": "ts-node src/index.ts",
     "watch": "concurrently --kill-others \"npm run watch:server\" \"npm run watch:client\"",
     "watch:client": "cd src/web-app && npm run watch",
     "watch:server": "nodemon --config nodemonconfig.json",
