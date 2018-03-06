@@ -4,11 +4,11 @@ import { injectable, inject } from 'inversify';
 import { TYPES } from '../inversify/inversify.types';
 import { IExampleService } from '../service-contracts/iexample-service';
 
-@controller('/api')
+@controller('/helloworld')
 export class ApiController implements interfaces.Controller {
     constructor(@inject(TYPES.IExampleService) private exampleService: IExampleService) { }
 
-    @httpGet('/helloworld')
+    @httpGet('/')
     private index(req: Request, res: Response): Response {
         return res.json({
             message: this.exampleService.helloWorld()

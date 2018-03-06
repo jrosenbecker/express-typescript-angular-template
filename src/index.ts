@@ -9,17 +9,20 @@ import * as path from 'path';
 // Import and register the controllers (done automattically through the controller annotations)
 import './controllers';
 
-// Manually set a static route to serve the angular application
-const staticRoutes = express.Router();
-staticRoutes.use(express.static(path.join(__dirname, '..', 'dist', 'web-app')));
-
 // Use inversify to manage dependency injection and register the static routes
-const inversifyServer = new InversifyExpressServer(container, staticRoutes).setConfig((app) => {
+const inversifyServer = new InversifyExpressServer(container, null, {rootPath: '/api'}).setConfig((app) => {
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({extended: false}));
 });
 
 const server = inversifyServer.build();
+
+// Serve static resources at the root route
+server.use(express.static(path.join(__dirname, '..', 'dist', 'web-app')));
+server.use('/ckeditor', express.static(path.join(__dirname, 'ckeditor')));
+server.use('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'dist', 'web-app', 'index.html'));
+});
 
 // Set port based on environment variables
 server.set('port', (process.env.PORT || 3000));
