@@ -10,4 +10,3 @@ git clone https://github.com/jrosenbecker/express-typescript-angular-template.gi
 ```
 2. Run `npm install`.
 3. Run `npm start` to start the express server or `npm run watch` to watch for any changes you make.
-4. 
